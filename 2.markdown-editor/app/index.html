@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fire Sale</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <!-- section with buttons for opening and saving files -->
+    <section class="controls">
+      <button id="new-file">New File</button>
+      <button id="open-file">Open File</button>
+      <button id="save-markdown" disabled>Save File</button>
+      <button id="revert" disabled>Revert</button>
+      <button id="save-html">Save HTML</button>
+      <button id="show-file" disabled>Show File</button>
+      <button id="open-in-default" disabled>Open in Default Application</button>
+    </section>
+
+    <!-- section for write and edit markdown content and render it -->
+    <section class="content">
+      <label for="markdown" hidden>Markdown Content</label>
+      <!-- editing markdown -->
+      <textarea class="raw-markdown" id="markdown"></textarea>
+      <!-- rendering markdown -->
+      <div class="rendered-html" id="html"></div>
+    </section>
+  </body>
+
+  <!-- require the code for renderer process -->
+  <script>
+    require('./renderer')
+  </script>
+</html>

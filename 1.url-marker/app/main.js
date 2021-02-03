@@ -14,8 +14,9 @@ app.on('ready', () => {
     },
   })
   //tell the browser window to load an HTML file located in the same directory as the main process
-  mainWindow.webContents.loadURL(`file://${__dirname}/index.html`)
+  mainWindow.webContents.loadFile('app/index.html') //loads the given file in the window, filePath should be a path to an HTML file relative to the root of your application
+  //mainWindow.webContents.loadURL(`file://${__dirname}/index.html`) //loads the url in the window, url must contain the protocol prefix, e.g. the http:// or file://
 
-  //open the DevTools (COMMENT IN PRODUCTION!!!!!!)
+  //open the DevTools (COMMENT IN PRODUCTION!!!!!!) -> use shortcut [Ctrl + Shift + I]
   //mainWindow.webContents.openDevTools()
 })
