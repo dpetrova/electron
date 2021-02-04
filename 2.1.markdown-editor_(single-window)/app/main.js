@@ -17,6 +17,7 @@ app.on('ready', () => {
 
   //load app/index.html in the BrowserWindow instance
   mainWindow.loadFile('app/index.html')
+  //mainWindow.webContents.loadURL(`file://${__dirname}/index.html`) //loads the url in the window, url must contain the protocol prefix, e.g. the http:// or file://
 
   //a single event listener to "ready-to-show" -> show the window when the DOM is ready
   mainWindow.once('ready-to-show', async () => {
