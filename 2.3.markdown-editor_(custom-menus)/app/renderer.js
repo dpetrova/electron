@@ -1,4 +1,4 @@
-const { remote, ipcRenderer } = require('electron')
+const { remote, ipcRenderer, shell } = require('electron')
 const marked = require('marked')
 const path = require('path')
 
@@ -10,20 +10,6 @@ const currentWindow = remote.getCurrentWindow()
 
 //requires the Menu module from the context of the main process via the remote module
 const { Menu } = remote
-
-const markdownContextMenu = Menu.buildFromTemplate([
-  {
-    label: 'Open File',
-    click() {
-      mainProcess.getFileFromUser(currentWindow)
-    },
-  },
-  { type: 'separator' },
-  { label: 'Cut', role: 'cut' },
-  { label: 'Copy', role: 'copy' },
-  { label: 'Paste', role: 'paste' },
-  { label: 'Select All', role: 'selectall' },
-])
 
 //cache DOM selectors
 const markdownView = document.querySelector('#markdown')
@@ -54,10 +40,10 @@ markdownView.addEventListener('keyup', (event) => {
   updateUserInterface(currentContent !== originalContent)
 })
 
-//listening for contextmenu events (right-click)
+//listening for contextmenu events (right-click) анд create a menu each time and then immediately call its popup() method
 markdownView.addEventListener('contextmenu', (event) => {
   event.preventDefault()
-  markdownContextMenu.popup()
+  createContextMenu().popup()
 })
 
 //triggering Open File dialog in the main process
@@ -146,6 +132,9 @@ const renderFile = (file, content) => {
   markdownView.value = content
   //update the HTML content in the UI
   renderMarkdownToHtml(content)
+  //activate the Show File and Open in Default buttons
+  showFileButton.disabled = false
+  openInDefaultButton.disabled = false
   //update the window’s title bar whenever a new file is opened
   updateUserInterface(false)
 }
@@ -172,6 +161,58 @@ const updateUserInterface = (isEdited) => {
   saveMarkdownButton.disabled = !isEdited
   revertButton.disabled = !isEdited
 }
+
+const showFile = () => {
+  //it seems unlikely that a user could click a disabled button, but we guard against them
+  if (!filePath) {
+    return alert('This file has not been saved to the file system.')
+  }
+  //trigger the operating system’s native file browser to open a new window with the provided file path
+  shell.showItemInFolder(filePath)
+}
+
+const openInDefaultApplication = () => {
+  if (!filePath) {
+    return alert('This file has not been saved to the file system.')
+  }
+  //open file by the operating system default application, designated by the user
+  shell.openPath(filePath)
+}
+
+//function that creates a new context menu each time the user right-clicked the Markdown view
+const createContextMenu = () => {
+  return Menu.buildFromTemplate([
+    {
+      label: 'Open File',
+      click() {
+        mainProcess.getFileFromUser(currentWindow)
+      },
+    },
+    {
+      label: 'Show File in Folder',
+      click: showFile,
+      enabled: !!filePath,
+    },
+    {
+      label: 'Open in Default',
+      click: openInDefaultApplication,
+      enabled: !!filePath,
+    },
+    { type: 'separator' },
+    { label: 'Cut', role: 'cut' },
+    { label: 'Copy', role: 'copy' },
+    { label: 'Paste', role: 'paste' },
+    { label: 'Select All', role: 'selectall' },
+  ])
+}
+
+showFileButton.addEventListener('click', showFile)
+
+openInDefaultButton.addEventListener('click', openInDefaultApplication)
+
+ipcRenderer.on('show-file', showFile)
+
+ipcRenderer.on('open-in-default', openInDefaultApplication)
 
 /* Implement Drag and Drop */
 

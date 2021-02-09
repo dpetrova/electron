@@ -1,16 +1,17 @@
 const { app, BrowserWindow, dialog, Menu } = require('electron')
 const fs = require('fs')
+const path = require('path')
 
 //to build custom menu
-const applicationMenu = require('./application-menu')
+const createApplicationMenu = require('./application-menu')
 
 const windows = new Set()
 const openFiles = new Map()
 
 //create a window when the application is ready
 app.on('ready', () => {
-  //set custom build menu
-  Menu.setApplicationMenu(applicationMenu)
+  //create and set custom menu
+  createApplicationMenu()
   createWindow()
 })
 
@@ -64,6 +65,7 @@ const createWindow = () => {
   })
 
   newWindow.isCurrentlyEdited = false
+  newWindow.currentlyRepresentedFilename = null //to can track pathname of the file the window represents when open file in that window
   newWindow.loadFile('app/index.html')
   //newWindow.webContents.loadURL(`file://${__dirname}/index.html`)
 
@@ -71,10 +73,14 @@ const createWindow = () => {
     newWindow.show()
   })
 
+  //create a new application menu whenever a new window gains focus (to update menu items enabled prop)
+  newWindow.on('focus', createApplicationMenu)
+
   //closed event is fired when the window has successfully been closed
   newWindow.on('closed', () => {
     windows.delete(newWindow)
     stopWatchingFile(newWindow)
+    createApplicationMenu() //create a new application menu whenever a window is closed (to update menu items enabled prop)
     newWindow = null
   })
 
@@ -121,9 +127,11 @@ const getFileFromUser = (targetWindow) => {
 const openFile = (targetWindow, file) => {
   const content = fs.readFileSync(file).toString()
   app.addRecentDocument(file)
-  targetWindow.setRepresentedFilename(file) //set the represented file in macOS
-  targetWindow.webContents.send('file-opened', file, content)
   startWatchingFile(targetWindow, file)
+  targetWindow.setRepresentedFilename(file) //set the represented file in macOS
+  targetWindow.currentlyRepresentedFilename = path.parse(file).base //set the pathname of the file the window represents (to can track when needed in WindowOS)
+  targetWindow.webContents.send('file-opened', file, content)
+  createApplicationMenu() //create a new application menu whenever a file has been opened and the represented file has been set
 }
 
 //export the generated html output

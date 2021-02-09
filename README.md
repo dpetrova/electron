@@ -27,4 +27,5 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- watch the filesystem for changes;
  	- add files to the operating system’s list of recently opened files
 	- update window title bar;
-	- prompt dialogs alerting user before discard unsaved changes
+	- prompt dialogs alerting user before discard unsaved changes;
+	- have custom application and context menus
