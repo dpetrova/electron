@@ -29,3 +29,10 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- update window title bar;
 	- prompt dialogs alerting user before discard unsaved changes;
 	- have custom application and context menus
+	- dynamically enabling menu items
+3.1.clipmaster -> a simple application that:
+	- live in the operating system’s menu bar or system tray
+	- reading from and writing to the system clipboard
+	- registering global shortcuts that listen for specific keystrokes even when the application is not in use
+	- triggering native notifications in macOS and Windows 10
+
