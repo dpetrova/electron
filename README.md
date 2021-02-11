@@ -35,4 +35,5 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- reading from and writing to the system clipboard
 	- registering global shortcuts that listen for specific keystrokes even when the application is not in use
 	- triggering native notifications in macOS and Windows 10
+	- publish clippings to https://api.github.com/gists
 
