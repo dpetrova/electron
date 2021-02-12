@@ -5,12 +5,19 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
+    "build": "npm run build-win",
+    "build-mac": "electron-packager . --platform=darwin --out=build --icon=./icons/Icon.icns --asar --overwrite",
+    "build-win": "electron-packager . --platform=win32 --out=build --icon=./icons/Icon.ico --asar --overwrite",
+    "build-linux": "electron-packager . --platform=linux --out=build --icon=./icons/Icon.png --asar --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dpetrova",
   "license": "ISC",
   "dependencies": {
-    "electron": "^11.2.1",
     "marked": "^1.2.8"
+  },
+  "devDependencies": {
+    "electron": "^11.2.1",
+    "electron-packager": "^15.2.0"
   }
 }
