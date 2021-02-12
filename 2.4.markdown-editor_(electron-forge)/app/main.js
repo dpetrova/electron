@@ -2,6 +2,9 @@ const { app, BrowserWindow, dialog, Menu } = require('electron')
 const fs = require('fs')
 const path = require('path')
 
+//stop your app launching multiple times during install
+if (require('electron-squirrel-startup')) return app.quit()
+
 //to build custom menu
 const createApplicationMenu = require('./application-menu')
 

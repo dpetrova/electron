@@ -13,9 +13,10 @@ logs
 *.log
 npm-debug.log*
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
+# Compiled binary
 build
 build/Release
+out
 
 # Optional npm cache directory
 .npm
