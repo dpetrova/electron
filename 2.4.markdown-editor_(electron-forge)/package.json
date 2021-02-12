@@ -13,6 +13,6 @@
     "marked": "^1.2.8"
   },
   "devDependencies": {
-    "electron": "^11.2.1"
+    "electron": "^11.2.3"
   }
 }

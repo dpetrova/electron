@@ -31,6 +31,19 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- have custom application and context menus
 	- dynamically enabling menu items
 	- build with electron-packager
+2.4.markdown-editor -> markdown editor which:
+	- allow to write and edit markdown text, 
+	- convert it to html and render it; 
+	- open file via open dialog; 
+	- use multiple windows for the UI; 
+	- support drag-n-drop files;
+	- watch the filesystem for changes;
+ 	- add files to the operating system’s list of recently opened files
+	- update window title bar;
+	- prompt dialogs alerting user before discard unsaved changes;
+	- have custom application and context menus
+	- dynamically enabling menu items
+	- build with electron-forge
 3.1.clipmaster -> a simple application that:
 	- live in the operating system’s menu bar or system tray
 	- reading from and writing to the system clipboard
