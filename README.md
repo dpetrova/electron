@@ -50,9 +50,18 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- registering global shortcuts that listen for specific keystrokes even when the application is not in use
 	- triggering native notifications in macOS and Windows 10
 	- publish clippings to https://api.github.com/gists
-4.jetsetter -> an application for keeping track of the things you need to pack; this covers:
-	- set up electron-compile to transpile CoffeeScript, TypeScript, and upcoming JS features (using Babel) without a build step in an Electron application
-	- using electron-compile to transpile Less, Sass, and Stylus to CSS and Jade to HTML
-	- building a simple Electron application using React, Sass, and Jade
-	- set up live reload
-
+4.1.jetsetter -> an application for keeping track of the things you need to pack; this covers:
+	- set up app with electron-forge
+	- use Webpack template
+	- use React integration and SASS
+	- use react-hot-loader
+4.2.jetsetter -> an application for keeping track of the things you need to pack; this covers:
+	- set up app with electron-forge
+	- use Webpack template
+	- use React integration and SASS
+	- use react-hot-loader
+	- use Node.js modules built with C++ in your main and renderer processes
+	- get the correct versions of your dependencies for Electron’s version of Node
+	- use SQLite and IndexedDB databases to persist data
+	- store user-specific application data in the operating system’s designated location
+	
