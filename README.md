@@ -50,6 +50,17 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- registering global shortcuts that listen for specific keystrokes even when the application is not in use
 	- triggering native notifications in macOS and Windows 10
 	- publish clippings to https://api.github.com/gists
+3.2.clipmaster_(menubar-library) -> an application that:
+	- create the application with the menubar library
+	- live in the operating system’s menu bar or system tray
+	- reading from and writing to the system clipboard
+	- registering global shortcuts that listen for specific keystrokes even when the application is not in use
+	- triggering native notifications in macOS and Windows 10
+	- have clickable notifications
+	- send HTTP requests with the axios library
+	- publish clippings to https://api.github.com/gists
+	- add secondary menus to tray instances
+3.3.clipmaster -> using Spectron to test Electron app	
 4.1.jetsetter -> an application for keeping track of the things you need to pack; this covers:
 	- set up app with electron-forge
 	- use Webpack template

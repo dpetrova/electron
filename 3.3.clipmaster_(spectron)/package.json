@@ -1,0 +1,21 @@
+{
+  "name": "clipmaster",
+  "version": "1.0.0",
+  "description": "A menubar application with a rich UI.",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha"
+  },
+  "author": "dpetrova",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "electron": "^11.2.3",
+    "menubar": "^9.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^8.3.0",
+    "spectron": "^13.0.0"
+  }
+}
