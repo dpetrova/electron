@@ -9,8 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "postinstall": "electron-rebuild"
+    "lint": "echo \"No linting configured\""
   },
   "keywords": [],
   "author": {
@@ -76,7 +75,6 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^4.2.1",
     "electron": "11.2.3",
-    "electron-rebuild": "^2.3.5",
     "node-loader": "^1.0.1",
     "react-hot-loader": "^4.13.0",
     "sass": "^1.32.7",
@@ -85,7 +83,9 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "knex": "^0.21.17",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "sqlite3": "^5.0.0"
   }
 }

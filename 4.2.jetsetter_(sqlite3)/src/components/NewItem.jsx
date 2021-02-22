@@ -27,8 +27,8 @@ class NewItem extends Component {
     const { value } = this.state;
 
     event.preventDefault();
-    //pass an object representing the new item using the current UNIX timestamp as a plausibly unique identifier
-    onSubmit({ value, packed: false, id: Date.now() });
+    //pass an object representing the new item
+    onSubmit({ value, packed: false });
     //reset the value of the input to an empty string
     this.setState({ value: '' });
   }

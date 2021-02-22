@@ -62,6 +62,5 @@ Electron tutorial projects from "Electron in Action" by Steven Kinney
 	- use react-hot-loader
 	- use Node.js modules built with C++ in your main and renderer processes
 	- get the correct versions of your dependencies for Electron’s version of Node
-	- use SQLite and IndexedDB databases to persist data
+	- use SQLite database to persist data
 	- store user-specific application data in the operating system’s designated location
-	

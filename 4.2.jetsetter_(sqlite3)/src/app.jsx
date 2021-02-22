@@ -2,21 +2,16 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Application from './components/Application.jsx';
-
-// function render() {
-//   ReactDOM.render(<Application />, document.getElementById('application'));
-// }
-
-// render();
+import database from './database';
 
 const renderApplication = async () => {
-    //require a fresh version of the Application, which requires all the other modules in our application when rendering    
-    const Application = require('./components/Application.jsx').default;
-    //const { default: Application } = require('./components/Application.jsx');
-    //const { default: Application } = await import('./components/Application.jsx');
+    //require a fresh version of the Application, which requires all the other modules in our application when rendering
+    const { default: Application } = await import('./components/Application.jsx');
+
     ReactDOM.render(
       <AppContainer>
-        <Application />
+        {/* pass database into the Application component as a property */}
+        <Application database={database} />
       </AppContainer>,
       document.getElementById('application')
     );
