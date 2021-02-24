@@ -1,0 +1,32 @@
+{
+  "name": "firesale",
+  "version": "1.0.0",
+  "description": "A markdown editor",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "server:crash": "node crash-report-server/server.js",
+    "server:update": "node auto-update-server/server.js",
+    "build": "npm run build-win",
+    "build-mac": "electron-packager . --platform=darwin --out=build --icon=./icons/Icon.icns --asar --overwrite",
+    "build-win": "electron-packager . --platform=win32 --out=build --icon=./icons/Icon.ico --asar --overwrite --version-string.ProductName=\"Fire Sale\" && node ./scripts/windows.js",
+    "build-linux": "electron-packager . --platform=linux --out=build --icon=./icons/Icon.png --asar --overwrite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dpetrova",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.17.1",
+    "marked": "^1.2.8",
+    "multer": "^1.4.2",
+    "uuid": "^8.3.2",
+    "write-file": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron": "^11.2.3",
+    "electron-packager": "^15.2.0",
+    "electron-winstaller": "^5.0.0"
+  }
+}
